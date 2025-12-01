@@ -1,7 +1,7 @@
 from app.main import app
 
-def test_api_uses_app_banned_words_txt():
+def test_api_uses_replaced_chars_txt():
     client = app.test_client()
-    res = client.post("/sanitize", json={"text": "Kotor itu jorok"})
+    res = client.post("/replace", json={"text": "aku suka nasi"})
     assert res.status_code == 200
-    assert res.get_json()["cleaned"] == "K***r itu j***k"
+    assert res.get_json()["result"] == "4ku 5uk4 n451"
