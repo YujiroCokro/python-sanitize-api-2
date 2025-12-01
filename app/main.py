@@ -5,7 +5,7 @@ app = Flask(__name__)
 
 # Load replaced chars from: app/replaced_chars.txt
 REPLACEMENTS = {}
-REPLACED_PATH = Path(__file__).resolve().parent / "replaced_chars.txt"
+REPLACED_PATH = Path(__file__).resolve().parent / "replaced_char.txt"
 
 # Read replacement rules (format: a=4)
 if REPLACED_PATH.exists():
