@@ -1,7 +1,10 @@
-from app.main import sanitize
+from app.main import replace_chars
 
-def test_multiple_words():
-    assert sanitize("Kotor itu jorok", ["kotor", "jorok"]) == "K***r itu j***k"
+def test_replace_basic_chars():
+    replacements = {"a": "4", "e": "3", "i": "1", "o": "0", "s": "5"}
+    assert replace_chars("kotor", replacements) == "k0t0r"
 
-def test_substring_replaced_too():
-    assert sanitize("main kotor-kotoran", ["kotor"]) == "main k***r-k***ran"
+def test_replace_multiple_words():
+    replacements = {"a": "4", "e": "3", "i": "1", "o": "0", "s": "5"}
+    assert replace_chars("aku suka nasi", replacements) == "4ku 5uk4 n451"
+
