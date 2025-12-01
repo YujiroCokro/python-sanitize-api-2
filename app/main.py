@@ -14,14 +14,17 @@ if REPLACED_PATH.exists():
     for line in lines:
         if "=" in line:  # avoid empty lines
             key, value = line.strip().split("=")
-            REPLACEMENTS[key] = value
+            REPLACEMENTS[key.lower()] = value  # ensure lowercase keys
 
 def replace_chars(text, replacements):
-    result = text
-    # Replace each char based on mapping
-    for char, repl in replacements.items():
-        result = result.replace(char, repl)
-        result = result.replace(char.upper(), repl)  # Optional: uppercase support
+    result = ""
+    for ch in text:
+        low = ch.lower()
+        if low in replacements:
+            repl = replacements[low]
+            result += repl.upper() if ch.isupper() else repl
+        else:
+            result += ch
     return result
 
 @app.post("/replace")
